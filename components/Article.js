@@ -86,6 +86,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Sokal Affair',
+    date: 'May 5th, 1996',
+    firstParagraph: `The results of my little experiment demonstrate, at the very least, that some fashionable sectors of the American academic Left have been getting intellectually lazy. The editors of Social Text liked my article because they liked its conclusion: that "the content and methodology of postmodern science provide powerful intellectual support for the progressive political project" [sec. 6]. They apparently felt no need to analyze the quality of the evidence, the cogency of the arguments, or even the relevance of the arguments to the purported conclusion.`,
+
+    secondParagraph: `"Transgressing the Boundaries: Towards a Transformative Hermeneutics of Quantum Gravity"[3] proposed that quantum gravity has progressive political implications, and that the "morphogenetic field" could be a valid theory of quantum gravity. (A morphogenetic field is a concept adapted by Rupert Sheldrake in a way that Sokal characterized in the affair's aftermath as "a bizarre New Age idea.")[2] Sokal wrote that the concept of "an external world whose properties are independent of any individual human being" was "dogma imposed by the long post-Enlightenment hegemony over the Western intellectual outlook."`,
+
+    thirdParagraph: `After referring skeptically to the "so-called scientific method", the article declared that "it is becoming increasingly apparent that physical 'reality'" is fundamentally "a social and linguistic construct." It went on to state that because scientific research is "inherently theory-laden and self-referential", it "cannot assert a privileged epistemological status with respect to counterhegemonic narratives emanating from dissident or marginalized communities", and that therefore a "liberatory science" and an "emancipatory mathematics", spurning "the elite caste canon of 'high science'", needed to be established for a "postmodern science [that] provide[s] powerful intellectual support for the progressive political project."`
   }
 ];
 
@@ -143,8 +152,19 @@ function articleMaker(articleObj) {
   pOne.textContent = articleObj.firstParagraph;
   pTwo.textContent = articleObj.secondParagraph;
   pThree.textContent = articleObj.thirdParagraph;
+  expandButton.textContent = '+';
 
-  
+  expandButton.addEventListener('click', event => {
+    article.classList.toggle('article-open');
+    if (expandButton.textContent === '+') {
+      expandButton.textContent = '-';
+    }
+    else {
+      expandButton.textContent = '+';
+    }
+  })
 
   return article;
 }
+let articlesDiv = document.querySelector('.articles');
+data.forEach(newArticle => articlesDiv.appendChild(articleMaker(newArticle)))
